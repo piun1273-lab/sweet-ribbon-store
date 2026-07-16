@@ -11,16 +11,21 @@
 
 :root {
   /* Color System */
-  --color-ivory: #FFFDF9;
-  --color-cream: #FFF9F3;
-  --color-mint: #DCEEE8;
-  --color-mint-dark: #C4DFD5;
-  --color-pink: #F6D9E1;
-  --color-pink-dark: #ECBAC8;
-  --color-beige: #EFE3D5;
-  --color-brown: #5B4439;
-  --color-brown-light: #8E7163;
-  --color-gold: #C5A06A;
+  --color-ivory: #FDFAF6;
+  --color-cream: #F8F4EE;
+  --color-mint: #7BBD9B;
+  --color-mint-light: #D4EDE0;
+  --color-mint-pale: #EBF7F1;
+  --color-pink: #F2BFCA;
+  --color-pink-light: #FCEEF1;
+  --color-beige: #E8DDD0;
+  --color-brown: #3D2B1F;
+  --color-brown-mid: #6B4E3D;
+  --color-brown-light: #9A7B6B;
+  --color-gold: #B8935A;
+  --color-warm-gray: #F0EBE4;
+  --color-text-main: #2C1F15;
+  --color-text-sub: #7A6154;
   
   /* Fonts */
   --font-eng-title: 'Cormorant Garamond', serif;
@@ -29,20 +34,28 @@
   --font-kor-body: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   
   /* Shadows */
-  --shadow-light: 0 4px 20px rgba(91, 68, 57, 0.05);
-  --shadow-medium: 0 10px 30px rgba(91, 68, 57, 0.08);
-  --shadow-gold: 0 4px 15px rgba(197, 160, 106, 0.15);
+  --shadow-light: 0 2px 16px rgba(61, 43, 31, 0.06);
+  --shadow-medium: 0 8px 32px rgba(61, 43, 31, 0.10);
+  --shadow-card: 0 4px 24px rgba(61, 43, 31, 0.08);
+  --shadow-mint: 0 4px 20px rgba(123, 189, 155, 0.25);
 
   /* System Transition */
-  --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-smooth: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
   --transition-fast: all 0.2s ease-in-out;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 999px;
 }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
   background-color: var(--color-ivory);
-  color: var(--color-brown);
+  color: var(--color-text-main);
   font-family: var(--font-kor-body);
 }
 
@@ -52,17 +65,17 @@ body {
 
 /* Scrollbar Customization */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-ivory);
+  background: var(--color-cream);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-beige);
+  background: var(--color-mint-light);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gold);
+  background: var(--color-mint);
 }
 
 /* Typography Helpers */
@@ -73,7 +86,7 @@ h1, h2, h3, h4 {
 
 strong {
   font-weight: 600;
-  color: var(--color-brown);
+  color: var(--color-text-main);
 }
 
 /* UI Elements & Buttons */
@@ -84,17 +97,19 @@ strong {
   padding: 0.9rem 2.2rem;
   font-family: var(--font-kor-body);
   font-size: 0.95rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   text-decoration: none;
-  border-radius: 50px;
+  border-radius: var(--radius-full);
   cursor: pointer;
   transition: var(--transition-smooth);
+  border: none;
+  font-weight: 600;
 }
 
 .btn-primary {
-  background-color: var(--color-brown);
-  color: var(--color-ivory);
-  border: 1px solid var(--color-brown);
+  background-color: var(--color-mint);
+  color: #fff;
+  box-shadow: var(--shadow-mint);
 }
 
 .btn-primary:hover {
