@@ -615,6 +615,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const inquiryForm = document.getElementById('inquiry-form');
   const successModal = document.getElementById('success-modal');
   const modalCloseBtn = successModal.querySelector('.modal-close-btn');
+  const kakaoInquiryBtn = document.getElementById('kakao-inquiry-btn');
+
+  // 실제 카카오톡 채널 URL이 등록되기 전 안내
+  kakaoInquiryBtn?.addEventListener('click', (e) => {
+    if (kakaoInquiryBtn.getAttribute('href') === '#') {
+      e.preventDefault();
+      alert('카카오톡 채널 링크를 준비 중입니다. 잠시 후 다시 이용해 주세요.');
+    }
+  });
 
   // Submit
   inquiryForm.addEventListener('submit', (e) => {
