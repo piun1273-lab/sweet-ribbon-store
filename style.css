@@ -168,20 +168,14 @@ strong {
   color: var(--color-brown);
 }
 
-.logo-text {
-  font-family: var(--font-eng-title);
-  font-size: 1.8rem;
-  letter-spacing: 0.05em;
-  margin-right: 0.4rem;
-}
-
-.logo-ribbon-svg {
-  color: var(--color-gold);
+.logo-img {
+  height: 44px;
+  width: auto;
   transition: var(--transition-smooth);
 }
 
-.logo:hover .logo-ribbon-svg {
-  transform: rotate(15deg) scale(1.1);
+.logo:hover .logo-img {
+  transform: scale(1.03);
 }
 
 .nav-links {
@@ -522,19 +516,21 @@ section {
 
 .image-frame {
   background-color: var(--color-cream);
-  padding: 2rem;
+  padding: 0;
   border-radius: 300px 300px 20px 20px; /* 프렌치 아치 형태 */
   box-shadow: var(--shadow-light);
   border: 1px solid rgba(239, 227, 213, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  height: 450px;
 }
 
 .story-character-img {
-  width: 90%;
-  max-width: 320px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .story-quote {
@@ -1060,7 +1056,7 @@ section {
 
 .pkg-main-image {
   background-color: var(--color-cream);
-  padding: 2.5rem;
+  padding: 0;
   border-radius: 50%;
   width: 380px;
   height: 380px;
@@ -1070,11 +1066,13 @@ section {
   box-shadow: var(--shadow-light);
   border: 1px solid rgba(239, 227, 213, 0.5);
   margin-bottom: 2rem;
+  overflow: hidden;
 }
 
 .pkg-char-img {
-  width: 80%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .pkg-tag-service {
@@ -1724,6 +1722,13 @@ section {
   letter-spacing: 0.05em;
   display: block;
   margin-bottom: 0.5rem;
+}
+
+.footer-logo-img {
+  height: 52px;
+  width: auto;
+  margin-bottom: 1rem;
+  display: block;
 }
 
 .footer-slogan {
