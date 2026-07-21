@@ -2699,3 +2699,43 @@ section {
   .pastry-group + .pastry-group { margin-left: -5%; }
   .pastry-group .filled-slot { width: 124%; }
 }
+
+/* Products sit behind the front wall, inside the box cavity */
+.gift-box-stage > img:first-child {
+  position: relative;
+  z-index: 1;
+}
+.gift-box-slots {
+  z-index: 2;
+  left: 15%;
+  top: 12%;
+  width: 72%;
+  height: 53%;
+  overflow: hidden;
+  clip-path: polygon(3% 0, 98% 0, 94% 100%, 6% 100%);
+}
+.gift-box-front-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  clip-path: polygon(0 53%, 100% 53%, 100% 100%, 0 100%);
+}
+.pastry-group .filled-slot {
+  width: 108%;
+  height: 104%;
+  margin: -2%;
+}
+.pastry-group .product-madeleine img { transform: scale(1.17); }
+.pastry-group .product-financier img { transform: scale(1.12); }
+.pastry-group .product-cookie img { transform: scale(1.03); }
+.pastry-group .filled-slot:nth-child(odd) { margin-top: -4%; }
+.pastry-group .filled-slot:nth-child(even) { margin-top: 5%; }
+
+@media (max-width: 560px) {
+  .gift-box-slots { left: 15%; top: 12%; width: 72%; height: 53%; }
+  .gift-box-front-mask { clip-path: polygon(0 53%, 100% 53%, 100% 100%, 0 100%); }
+}
