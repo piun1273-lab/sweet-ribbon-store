@@ -2813,3 +2813,61 @@ section {
 .gift-box-slots.items-10 .filled-slot img,
 .gift-box-slots.items-11 .filled-slot img,
 .gift-box-slots.items-12 .filled-slot img { transform: scale(1.2); }
+
+/* Straight horizontal box with a visible branded front panel */
+.gift-box-stage.capacity-3 { width: 58%; }
+.gift-box-stage.capacity-4 { width: 72%; }
+.gift-box-stage.capacity-5 { width: 85%; }
+.gift-box-stage.capacity-6 { width: 96%; }
+.gift-box-stage.capacity-8,
+.gift-box-stage.capacity-12 { width: 100%; }
+.gift-box-front-mask { display: none; }
+.gift-box-slots {
+  left: 14%;
+  top: 19%;
+  width: 72%;
+  height: 49%;
+  clip-path: inset(0 round 2px);
+}
+.gift-box-front-panel {
+  position: absolute;
+  left: 10.2%;
+  bottom: 13.8%;
+  z-index: 5;
+  width: 79.6%;
+  height: 12.5%;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  border-top: 7px solid #d8a7a2;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(#c9d5cf, #aebfb7);
+  box-shadow: 0 6px 10px rgba(72, 49, 36, .16);
+  pointer-events: none;
+}
+.gift-box-front-panel span {
+  color: #9c744d;
+  font-family: var(--font-en);
+  font-size: clamp(10px, 1.65vw, 18px);
+  letter-spacing: .04em;
+}
+.gift-box-slots .filled-slot { margin-left: -5%; margin-right: -5%; }
+.gift-box-slots .filled-slot img { transform: scale(1.28); }
+.gift-box-slots.items-6 .filled-slot img,
+.gift-box-slots.items-7 .filled-slot img,
+.gift-box-slots.items-8 .filled-slot img { transform: scale(1.3); }
+.gift-box-slots.items-9 .filled-slot img,
+.gift-box-slots.items-10 .filled-slot img,
+.gift-box-slots.items-11 .filled-slot img,
+.gift-box-slots.items-12 .filled-slot img { transform: scale(1.32); }
+
+@media (max-width: 560px) {
+  .gift-box-stage.capacity-3 { width: 68%; }
+  .gift-box-stage.capacity-4 { width: 80%; }
+  .gift-box-stage.capacity-5 { width: 92%; }
+  .gift-box-stage.capacity-6,
+  .gift-box-stage.capacity-8,
+  .gift-box-stage.capacity-12 { width: 100%; }
+  .gift-box-slots { left: 14%; top: 19%; width: 72%; height: 49%; }
+  .gift-box-front-panel { border-top-width: 4px; }
+}
