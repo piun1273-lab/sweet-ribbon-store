@@ -2768,3 +2768,48 @@ section {
 @media (max-width: 560px) {
   .box-empty-guide { min-height: 260px; }
 }
+
+/* Dense, centered packing without missing-tooth gaps */
+.gift-box-slots {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  column-gap: 0 !important;
+  row-gap: 0 !important;
+}
+.pastry-group { display: contents !important; }
+.gift-box-slots .filled-slot {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: auto;
+  margin: 0 -1.5%;
+}
+.gift-box-slots.items-1 .filled-slot { flex-basis: 45%; height: 92%; }
+.gift-box-slots.items-2 .filled-slot { flex-basis: 42%; height: 92%; }
+.gift-box-slots.items-3 .filled-slot { flex-basis: 31%; height: 92%; }
+.gift-box-slots.items-4 .filled-slot { flex-basis: 24%; height: 92%; }
+.gift-box-slots.items-5 .filled-slot { flex-basis: 19%; height: 92%; }
+.gift-box-slots.items-6 .filled-slot { flex-basis: 31%; height: 50%; }
+.gift-box-slots.items-7 .filled-slot,
+.gift-box-slots.items-8 .filled-slot { flex-basis: 24%; height: 50%; }
+.gift-box-slots.items-9 .filled-slot,
+.gift-box-slots.items-10 .filled-slot,
+.gift-box-slots.items-11 .filled-slot,
+.gift-box-slots.items-12 .filled-slot { flex-basis: 23%; height: 34%; }
+.gift-box-slots .filled-slot:nth-child(odd),
+.gift-box-slots .filled-slot:nth-child(even) { margin-top: 0; }
+.gift-box-slots .filled-slot:nth-child(5n + 1) { transform: rotate(-3deg) translateY(2%); }
+.gift-box-slots .filled-slot:nth-child(5n + 2) { transform: rotate(2deg) translateY(-2%); }
+.gift-box-slots .filled-slot:nth-child(5n + 3) { transform: rotate(-1deg) translateY(1%); }
+.gift-box-slots .filled-slot:nth-child(5n + 4) { transform: rotate(3deg) translateY(-1%); }
+.gift-box-slots .filled-slot:nth-child(5n) { transform: rotate(-2deg) translateY(2%); }
+.gift-box-slots .filled-slot img { transform: scale(1.12); }
+.gift-box-slots.items-6 .filled-slot img,
+.gift-box-slots.items-7 .filled-slot img,
+.gift-box-slots.items-8 .filled-slot img { transform: scale(1.18); }
+.gift-box-slots.items-9 .filled-slot img,
+.gift-box-slots.items-10 .filled-slot img,
+.gift-box-slots.items-11 .filled-slot img,
+.gift-box-slots.items-12 .filled-slot img { transform: scale(1.2); }

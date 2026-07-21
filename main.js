@@ -709,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <img src="${item.image}" alt="">
             </button>`).join('')}
         </div>`).join('');
-      slots.className = `gift-box-slots capacity-${boxSpec.capacity} groups-${groupedItems.length}${groupedItems.length > 1 ? ' is-mixed' : ' is-single'}`;
+      slots.className = `gift-box-slots capacity-${boxSpec.capacity} items-${builderState.items.length} groups-${groupedItems.length}${groupedItems.length > 1 ? ' is-mixed' : ' is-single'}`;
       boxStage.className = `gift-box-stage capacity-${boxSpec.capacity}`;
       slots.querySelectorAll('[data-slot]').forEach(slot => slot.addEventListener('click', () => {
         builderState.items.splice(Number(slot.dataset.slot), 1);
