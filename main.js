@@ -710,7 +710,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </button>`).join('')}
         </div>`).join('');
       slots.className = `gift-box-slots capacity-${boxSpec.capacity} items-${builderState.items.length} groups-${groupedItems.length}${groupedItems.length > 1 ? ' is-mixed' : ' is-single'}`;
-      boxStage.className = `gift-box-stage capacity-${boxSpec.capacity}`;
+      boxStage.className = `gift-box-stage capacity-${boxSpec.capacity} item-count-${builderState.items.length}`;
       slots.querySelectorAll('[data-slot]').forEach(slot => slot.addEventListener('click', () => {
         builderState.items.splice(Number(slot.dataset.slot), 1);
         updateBuilder();
