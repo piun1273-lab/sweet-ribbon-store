@@ -614,23 +614,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const builderRoot = document.getElementById('box-builder');
   if (builderRoot) {
     const builderProducts = [
-      { id: 'm-choco', category: 'madeleine', name: '초코 마들렌', price: 2800, image: 'assets/menu_madeleine.png', tone: '#765044' },
-      { id: 'm-matcha', category: 'madeleine', name: '말차 마들렌', price: 2900, image: 'assets/menu_madeleine.png', tone: '#82916a' },
-      { id: 'm-earlgrey', category: 'madeleine', name: '얼그레이 마들렌', price: 2800, image: 'assets/menu_madeleine.png', tone: '#c19b72' },
-      { id: 'm-lemon', category: 'madeleine', name: '레몬 마들렌', price: 2800, image: 'assets/menu_madeleine.png', tone: '#e4b957' },
-      { id: 'm-raspberry', category: 'madeleine', name: '라즈베리 마들렌', price: 2900, image: 'assets/menu_madeleine.png', tone: '#d88989' },
-      { id: 'f-fig', category: 'financier', name: '무화과 휘낭시에', price: 3200, image: 'assets/menu_financier.png', tone: '#a16c4c' },
-      { id: 'f-almond', category: 'financier', name: '아몬드 휘낭시에', price: 3000, image: 'assets/menu_financier.png', tone: '#c6945f' },
-      { id: 'f-cheese', category: 'financier', name: '황치즈 휘낭시에', price: 3100, image: 'assets/menu_financier.png', tone: '#d6a33d' },
-      { id: 'f-caramel', category: 'financier', name: '카라멜솔티 휘낭시에', price: 3100, image: 'assets/menu_financier.png', tone: '#9d5f35' },
-      { id: 'f-coconut', category: 'financier', name: '초코코코넛 휘낭시에', price: 3200, image: 'assets/menu_financier.png', tone: '#69483f' },
-      { id: 'f-matcha', category: 'financier', name: '말차화이트초코 휘낭시에', price: 3200, image: 'assets/menu_financier.png', tone: '#718762' },
-      { id: 'c-choco', category: 'cookie', name: '초코 사블레', price: 2200, image: 'assets/menu_sable.png', tone: '#6e4b3c' },
-      { id: 'c-matcha', category: 'cookie', name: '말차 사블레', price: 2300, image: 'assets/menu_sable.png', tone: '#75875d' },
-      { id: 'c-cheese', category: 'cookie', name: '황치즈 사블레', price: 2300, image: 'assets/menu_sable.png', tone: '#d7a84e' },
-      { id: 'c-raspberry', category: 'cookie', name: '라즈베리코코넛 사블레', price: 2400, image: 'assets/menu_sable.png', tone: '#d28d91' },
-      { id: 'c-vanilla', category: 'cookie', name: '바닐라 사블레', price: 2200, image: 'assets/menu_sable.png', tone: '#d6bf98' },
-      { id: 'c-coffee', category: 'cookie', name: '커피 사블레', price: 2300, image: 'assets/menu_sable.png', tone: '#80614c' }
+      { id: 'm-choco', category: 'madeleine', name: '초코 마들렌', price: 2800, image: 'assets/products/madeleine-choco.webp', tone: '#765044' },
+      { id: 'm-matcha', category: 'madeleine', name: '말차 마들렌', price: 2900, image: 'assets/products/madeleine-matcha.webp', tone: '#82916a' },
+      { id: 'm-earlgrey', category: 'madeleine', name: '얼그레이 마들렌', price: 2800, image: 'assets/products/madeleine-earlgrey.webp', tone: '#c19b72' },
+      { id: 'm-lemon', category: 'madeleine', name: '레몬 마들렌', price: 2800, image: 'assets/products/madeleine-lemon.webp', tone: '#e4b957' },
+      { id: 'm-raspberry', category: 'madeleine', name: '라즈베리 마들렌', price: 2900, image: 'assets/products/madeleine-raspberry.webp', tone: '#d88989' },
+      { id: 'f-fig', category: 'financier', name: '무화과 휘낭시에', price: 3200, image: 'assets/products/financier-fig.webp', tone: '#a16c4c' },
+      { id: 'f-almond', category: 'financier', name: '아몬드 휘낭시에', price: 3000, image: 'assets/products/financier-almond.webp', tone: '#c6945f' },
+      { id: 'f-cheese', category: 'financier', name: '황치즈 휘낭시에', price: 3100, image: 'assets/products/financier-cheese.webp', tone: '#d6a33d' },
+      { id: 'f-caramel', category: 'financier', name: '카라멜솔티 휘낭시에', price: 3100, image: 'assets/products/financier-caramel.webp', tone: '#9d5f35' },
+      { id: 'f-coconut', category: 'financier', name: '초코코코넛 휘낭시에', price: 3200, image: 'assets/products/financier-coconut.webp', tone: '#69483f' },
+      { id: 'f-matcha', category: 'financier', name: '말차화이트초코 휘낭시에', price: 3200, image: 'assets/products/financier-matcha.webp', tone: '#718762' },
+      { id: 'c-choco', category: 'cookie', name: '초코 사블레', price: 2200, image: 'assets/products/sable-choco.webp', tone: '#6e4b3c' },
+      { id: 'c-matcha', category: 'cookie', name: '말차 사블레', price: 2300, image: 'assets/products/sable-matcha.webp', tone: '#75875d' },
+      { id: 'c-cheese', category: 'cookie', name: '황치즈 사블레', price: 2300, image: 'assets/products/sable-cheese.webp', tone: '#d7a84e' },
+      { id: 'c-raspberry', category: 'cookie', name: '라즈베리코코넛 사블레', price: 2400, image: 'assets/products/sable-raspberry.webp', tone: '#d28d91' },
+      { id: 'c-vanilla', category: 'cookie', name: '바닐라 사블레', price: 2200, image: 'assets/products/sable-vanilla.webp', tone: '#d6bf98' },
+      { id: 'c-coffee', category: 'cookie', name: '커피 사블레', price: 2300, image: 'assets/products/sable-coffee.webp', tone: '#80614c' }
     ];
     const builderState = { items: [], sets: 10, filter: 'all' };
     const productGrid = document.getElementById('builder-products');
