@@ -795,6 +795,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Fixed quick-rail page movement
+  document.getElementById('quick-top')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  document.getElementById('quick-bottom')?.addEventListener('click', () => {
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+  });
+
   // Initialize view
   applyPreset('wedding');
 });

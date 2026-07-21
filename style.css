@@ -2871,3 +2871,68 @@ section {
   .gift-box-slots { left: 14%; top: 19%; width: 72%; height: 49%; }
   .gift-box-front-panel { border-top-width: 4px; }
 }
+
+/* Right-side social quick rail */
+.quick-rail {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  z-index: 90;
+  width: 66px;
+  overflow: hidden;
+  border: 1px solid rgba(82, 65, 55, .12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 12px 32px rgba(58, 42, 34, .16);
+  transform: translateY(-50%);
+  backdrop-filter: blur(8px);
+}
+.quick-link,
+.quick-move {
+  width: 100%;
+  min-height: 62px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 1px solid #eee6df;
+  background: #fff;
+  color: #58443a;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+.quick-link:hover,
+.quick-move:hover { background: #fbf5ef; }
+.quick-link small { color: #887367; font-size: 9px; line-height: 1; }
+.quick-talk {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 27px;
+  border-radius: 50%;
+  background: #3d3835;
+  color: #fff;
+  font: 700 9px Arial, sans-serif;
+}
+.quick-talk::after { content: ''; position: absolute; left: 4px; bottom: -4px; border: 5px solid transparent; border-top-color: #3d3835; transform: rotate(20deg); }
+.quick-naver strong { color: #03c75a; font: 900 27px Arial, sans-serif; line-height: .9; }
+.quick-instagram svg { width: 25px; height: 25px; fill: none; stroke: #b36783; stroke-width: 1.8; }
+.quick-move { min-height: 44px; }
+.quick-move span { width: 13px; height: 13px; border-top: 1.5px solid #413832; border-left: 1.5px solid #413832; transform: rotate(45deg) translate(2px, 2px); }
+.quick-move.quick-down { border-bottom: 0; }
+.quick-move.quick-down span { transform: rotate(225deg) translate(2px, 2px); }
+
+@media (max-width: 760px) {
+  .quick-rail { right: 8px; width: 48px; border-radius: 11px; }
+  .quick-link { min-height: 50px; }
+  .quick-link small { display: none; }
+  .quick-talk { width: 30px; height: 23px; font-size: 8px; }
+  .quick-naver strong { font-size: 23px; }
+  .quick-instagram svg { width: 22px; height: 22px; }
+  .quick-move { min-height: 38px; }
+}
