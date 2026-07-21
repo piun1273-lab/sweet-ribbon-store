@@ -697,6 +697,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateBuilder() {
       const boxSpec = getBoxSpec(builderState.items);
       builderRoot.classList.toggle('has-products', builderState.items.length > 0);
+      const categorySize = { madeleine: 1, financier: 1.12, cookie: .9 };
+      const totalProductSize = builderState.items.reduce((sum, item) => sum + categorySize[item.category], 0) || 1;
+      const rowMultiplier = builderState.items.length > 6 ? 2 : 1;
       const categoryOrder = ['madeleine', 'financier', 'cookie'];
       const groupedItems = categoryOrder.map(category => ({
         category,
@@ -705,12 +708,14 @@ document.addEventListener('DOMContentLoaded', () => {
       slots.innerHTML = groupedItems.map(group => `
         <div class="pastry-group group-${group.category} count-${group.items.length}" style="--group-weight:${group.items.length}">
           ${group.items.map(({ item, index }) => `
-            <button type="button" class="filled-slot product-${item.category}" data-slot="${index}" aria-label="상자에서 제품 빼기" style="--product-tone:${item.tone}">
+            <button type="button" class="filled-slot product-${item.category}" data-slot="${index}" aria-label="상자에서 제품 빼기" style="--product-tone:${item.tone};--item-basis:${((categorySize[item.category] / totalProductSize) * 100 * rowMultiplier).toFixed(2)}%">
               <img src="${item.image}" alt="">
             </button>`).join('')}
         </div>`).join('');
       slots.className = `gift-box-slots capacity-${boxSpec.capacity} items-${builderState.items.length} groups-${groupedItems.length}${groupedItems.length > 1 ? ' is-mixed' : ' is-single'}`;
       boxStage.className = `gift-box-stage capacity-${boxSpec.capacity} item-count-${builderState.items.length}`;
+      const boxWidth = builderState.items.length > 6 ? 100 : Math.min(100, Math.max(44, 35 + totalProductSize * 10));
+      boxStage.style.width = `${boxWidth}%`;
       slots.querySelectorAll('[data-slot]').forEach(slot => slot.addEventListener('click', () => {
         builderState.items.splice(Number(slot.dataset.slot), 1);
         updateBuilder();
