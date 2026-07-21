@@ -696,11 +696,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateBuilder() {
       const boxSpec = getBoxSpec(builderState.items);
-      slots.innerHTML = builderState.items.map((item, index) => `
-        <button type="button" class="filled-slot" data-slot="${index}" aria-label="상자에서 제품 빼기" style="--product-tone:${item.tone}">
-          <img src="${item.image}" alt="">
-        </button>`).join('');
-      slots.className = `gift-box-slots capacity-${boxSpec.capacity}`;
+      const categoryOrder = ['madeleine', 'financier', 'cookie'];
+      const groupedItems = categoryOrder.map(category => ({
+        category,
+        items: builderState.items.map((item, index) => ({ item, index })).filter(entry => entry.item.category === category)
+      })).filter(group => group.items.length);
+      slots.innerHTML = groupedItems.map(group => `
+        <div class="pastry-group group-${group.category} count-${group.items.length}" style="--group-weight:${group.items.length}">
+          ${group.items.map(({ item, index }) => `
+            <button type="button" class="filled-slot product-${item.category}" data-slot="${index}" aria-label="상자에서 제품 빼기" style="--product-tone:${item.tone}">
+              <img src="${item.image}" alt="">
+            </button>`).join('')}
+        </div>`).join('');
+      slots.className = `gift-box-slots capacity-${boxSpec.capacity} groups-${groupedItems.length}${groupedItems.length > 1 ? ' is-mixed' : ' is-single'}`;
       boxStage.className = `gift-box-stage capacity-${boxSpec.capacity}`;
       slots.querySelectorAll('[data-slot]').forEach(slot => slot.addEventListener('click', () => {
         builderState.items.splice(Number(slot.dataset.slot), 1);

@@ -2643,3 +2643,59 @@ section {
   from { opacity: 0; margin-top: -12px; }
   to { opacity: 1; margin-top: 0; }
 }
+
+/* Bakery-style packing: category clusters instead of rigid compartments */
+.gift-box-slots {
+  display: flex !important;
+  grid-template-columns: none !important;
+  grid-template-rows: none !important;
+  left: 14.5%;
+  top: 13.5%;
+  width: 72%;
+  height: 57%;
+  gap: 0 !important;
+  align-items: stretch;
+  overflow: visible;
+}
+.pastry-group {
+  position: relative;
+  display: grid;
+  flex: var(--group-weight) 1 0;
+  min-width: 0;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+  gap: 0;
+  padding: 0;
+}
+.gift-box-slots.is-mixed .group-madeleine,
+.gift-box-slots.is-mixed .group-financier,
+.gift-box-slots.is-mixed .group-cookie { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.gift-box-slots.is-mixed .pastry-group.count-1 { grid-template-columns: 1fr; }
+.gift-box-slots.is-single .pastry-group.count-1 { grid-template-columns: 1fr; }
+.gift-box-slots.is-single .pastry-group.count-2 { grid-template-columns: repeat(2, 1fr); }
+.gift-box-slots.is-single .pastry-group.count-3 { grid-template-columns: repeat(3, 1fr); }
+.gift-box-slots.is-single .pastry-group.count-4 { grid-template-columns: repeat(4, 1fr); }
+.gift-box-slots.is-single .pastry-group.count-5 { grid-template-columns: repeat(5, 1fr); }
+.gift-box-slots.is-single .pastry-group.count-6 { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); }
+.pastry-group + .pastry-group { margin-left: -3.5%; }
+.pastry-group .filled-slot {
+  width: 118%;
+  height: 112%;
+  margin: -6%;
+}
+.pastry-group .product-madeleine img { transform: scale(1.32); }
+.pastry-group .product-financier img { transform: scale(1.24); }
+.pastry-group .product-cookie img { transform: scale(1.12); }
+.group-cookie { z-index: 5; }
+.group-financier { z-index: 4; }
+.group-madeleine { z-index: 3; }
+.pastry-group .filled-slot:nth-child(odd) { margin-top: -12%; }
+.pastry-group .filled-slot:nth-child(even) { margin-top: 9%; }
+.pastry-group .filled-slot:hover { z-index: 10; }
+
+@media (max-width: 560px) {
+  .gift-box-slots { left: 14%; top: 14%; width: 73%; height: 56%; }
+  .pastry-group + .pastry-group { margin-left: -5%; }
+  .pastry-group .filled-slot { width: 124%; }
+}
