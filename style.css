@@ -2708,9 +2708,9 @@ section {
 .gift-box-slots {
   z-index: 2;
   left: 15%;
-  top: 12%;
+  top: 8.5%;
   width: 72%;
-  height: 53%;
+  height: 46%;
   overflow: hidden;
   clip-path: polygon(3% 0, 98% 0, 94% 100%, 6% 100%);
 }
@@ -2736,7 +2736,7 @@ section {
 .pastry-group .filled-slot:nth-child(even) { margin-top: 5%; }
 
 @media (max-width: 560px) {
-  .gift-box-slots { left: 15%; top: 12%; width: 72%; height: 53%; }
+  .gift-box-slots { left: 15%; top: 8.5%; width: 72%; height: 46%; }
   .gift-box-front-mask { clip-path: polygon(0 53%, 100% 53%, 100% 100%, 0 100%); }
 }
 
