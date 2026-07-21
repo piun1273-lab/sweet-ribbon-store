@@ -3090,3 +3090,37 @@ section {
 @media (max-width: 560px) {
   .gift-box-slots { left: 11%; top: 21%; width: 78%; height: 42%; }
 }
+
+/* Individual pleated paper cups, like hand-packed bakery gifts */
+.gift-box-slots .filled-slot {
+  position: relative;
+  isolation: isolate;
+  margin-left: 0;
+  margin-right: 0;
+  filter: none;
+}
+.gift-box-slots .filled-slot::before {
+  content: '';
+  position: absolute;
+  inset: 3% 1%;
+  z-index: -1;
+  border: 1px solid rgba(185, 176, 166, .38);
+  border-radius: 42% 42% 24% 24%;
+  background:
+    linear-gradient(90deg, transparent 46%, rgba(190,184,176,.22) 48%, transparent 51%),
+    repeating-linear-gradient(100deg, #fff 0 6px, #eeeae5 7px 9px, #fff 10px 14px);
+  box-shadow: 0 5px 7px rgba(67, 48, 35, .13);
+  clip-path: polygon(5% 3%, 10% 0, 15% 3%, 20% 0, 25% 3%, 30% 0, 35% 3%, 40% 0, 45% 3%, 50% 0, 55% 3%, 60% 0, 65% 3%, 70% 0, 75% 3%, 80% 0, 85% 3%, 90% 0, 95% 3%, 100% 8%, 97% 18%, 100% 28%, 97% 38%, 100% 48%, 97% 58%, 100% 68%, 97% 78%, 100% 88%, 95% 97%, 85% 100%, 75% 97%, 65% 100%, 55% 97%, 45% 100%, 35% 97%, 25% 100%, 15% 97%, 5% 100%, 0 91%, 3% 81%, 0 71%, 3% 61%, 0 51%, 3% 41%, 0 31%, 3% 21%, 0 11%);
+}
+.gift-box-slots .product-financier::before { inset: 2% 3%; border-radius: 20% 20% 14% 14%; }
+.gift-box-slots .product-cookie::before { inset: 7% 0; border-radius: 50%; }
+.gift-box-slots .filled-slot img {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 3px rgba(65, 43, 29, .18));
+}
+.gift-box-slots .filled-slot:nth-child(5n + 1),
+.gift-box-slots .filled-slot:nth-child(5n + 2),
+.gift-box-slots .filled-slot:nth-child(5n + 3),
+.gift-box-slots .filled-slot:nth-child(5n + 4),
+.gift-box-slots .filled-slot:nth-child(5n) { transform: none; }
