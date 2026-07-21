@@ -3124,3 +3124,28 @@ section {
 .gift-box-slots .filled-slot:nth-child(5n + 3),
 .gift-box-slots .filled-slot:nth-child(5n + 4),
 .gift-box-slots .filled-slot:nth-child(5n) { transform: none; }
+
+/* Paper cups removed: show only the selected products */
+.gift-box-slots .filled-slot::before { display: none; }
+
+/* Low-profile packing that fits completely below the box rim */
+.gift-box-slots {
+  left: 12%;
+  top: 29%;
+  width: 76%;
+  height: 33%;
+  overflow: visible;
+}
+.gift-box-slots .product-madeleine img,
+.gift-box-slots .product-financier img,
+.gift-box-slots .product-cookie img { transform: scale(.94); }
+.gift-box-slots.items-7 .filled-slot img,
+.gift-box-slots.items-8 .filled-slot img,
+.gift-box-slots.items-9 .filled-slot img,
+.gift-box-slots.items-10 .filled-slot img,
+.gift-box-slots.items-11 .filled-slot img,
+.gift-box-slots.items-12 .filled-slot img { transform: scale(.88); }
+
+@media (max-width: 560px) {
+  .gift-box-slots { left: 12%; top: 29%; width: 76%; height: 33%; }
+}
