@@ -2967,3 +2967,52 @@ section {
   .gift-box-stage.item-count-11,
   .gift-box-stage.item-count-12 { width: 100%; }
 }
+
+/* Front-facing box: show every selected product without clipping */
+.gift-box-slots {
+  left: 10%;
+  top: 20%;
+  width: 80%;
+  height: 44%;
+  overflow: visible;
+  clip-path: none;
+  transform: none;
+}
+.gift-box-front-mask { display: none !important; }
+.gift-box-front-panel {
+  left: 10%;
+  bottom: 22.5%;
+  width: 80%;
+  height: 9%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.gift-box-front-panel span {
+  color: #98704b;
+  font-size: clamp(11px, 1.75vw, 19px);
+  text-shadow: 0 1px rgba(255, 255, 255, .7);
+}
+.gift-box-slots .filled-slot {
+  overflow: visible;
+  filter: drop-shadow(0 5px 4px rgba(67, 45, 31, .2));
+}
+.gift-box-slots .filled-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(1.08);
+}
+.gift-box-slots.items-6 .filled-slot img,
+.gift-box-slots.items-7 .filled-slot img,
+.gift-box-slots.items-8 .filled-slot img,
+.gift-box-slots.items-9 .filled-slot img,
+.gift-box-slots.items-10 .filled-slot img,
+.gift-box-slots.items-11 .filled-slot img,
+.gift-box-slots.items-12 .filled-slot img { transform: scale(1.12); }
+
+@media (max-width: 560px) {
+  .gift-box-slots { left: 10%; top: 20%; width: 80%; height: 44%; }
+  .gift-box-front-panel { left: 10%; bottom: 22.5%; width: 80%; height: 9%; }
+}
