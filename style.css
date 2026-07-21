@@ -3327,6 +3327,8 @@ body {
   border-radius: 999px;
   background: #fff;
   color: #766459;
+  font-size: 16px;
+  font-weight: 700;
 }
 .menu-tab-btn.active { background: var(--landing-brown); color: #fff; border-color: var(--landing-brown); }
 .tab-magazine-layout { grid-template-columns: .92fr 1.08fr; gap: 0; overflow: hidden; border: 1px solid var(--landing-line); border-radius: 20px; background: #fff; box-shadow: 0 14px 36px rgba(75, 51, 34, .06); }
