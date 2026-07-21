@@ -696,6 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateBuilder() {
       const boxSpec = getBoxSpec(builderState.items);
+      builderRoot.classList.toggle('has-products', builderState.items.length > 0);
       const categoryOrder = ['madeleine', 'financier', 'cookie'];
       const groupedItems = categoryOrder.map(category => ({
         category,
@@ -715,12 +716,14 @@ document.addEventListener('DOMContentLoaded', () => {
         updateBuilder();
       }));
       const itemTotal = builderState.items.reduce((sum, item) => sum + item.price, 0);
-      const setPrice = itemTotal + 1500;
+      const packagePrice = builderState.items.length ? 1500 : 0;
+      const setPrice = itemTotal + packagePrice;
       const grandTotal = setPrice * builderState.sets;
       document.getElementById('box-count').textContent = builderState.items.length;
       document.getElementById('box-capacity').textContent = boxSpec.capacity;
       document.getElementById('box-format').textContent = boxSpec.label;
       document.getElementById('builder-item-count').textContent = `${builderState.items.length}개`;
+      document.getElementById('builder-package-price').textContent = won(packagePrice);
       document.getElementById('builder-set-price').textContent = won(setPrice);
       document.getElementById('builder-grand-total').textContent = won(grandTotal);
       if (selectedSummaryInput) selectedSummaryInput.value = builderState.items.length

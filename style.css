@@ -2739,3 +2739,32 @@ section {
   .gift-box-slots { left: 15%; top: 12%; width: 72%; height: 53%; }
   .gift-box-front-mask { clip-path: polygon(0 53%, 100% 53%, 100% 100%, 0 100%); }
 }
+
+/* Start with product selection; reveal the completed box afterward */
+.box-empty-guide {
+  min-height: 360px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: 30px;
+  box-sizing: border-box;
+  border: 1px dashed #d9c9bb;
+  border-radius: 7px;
+  background: linear-gradient(145deg, #fffdf9, #f7f1ea);
+  color: #8e7668;
+  text-align: center;
+}
+.box-empty-guide span { color: #d9a9a3; font-size: 36px; line-height: 1; }
+.box-empty-guide strong { margin-top: 15px; color: #594338; font-family: var(--font-kor-serif); font-size: 20px; font-weight: 500; }
+.box-empty-guide p { margin: 10px 0 0; color: #a28b7e; font-size: 12px; line-height: 1.8; }
+.box-builder:not(.has-products) .gift-box-stage,
+.box-builder:not(.has-products) .box-status { display: none; }
+.box-builder.has-products .box-empty-guide { display: none; }
+.box-builder.has-products .gift-box-stage { animation: completedBoxIn .42s ease both; }
+@keyframes completedBoxIn {
+  from { opacity: 0; transform: translateY(12px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 560px) {
+  .box-empty-guide { min-height: 260px; }
+}
