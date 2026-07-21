@@ -608,6 +608,93 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  /* ====================================================
+   * 4-1. Visual Sweet Box Builder
+   * ==================================================== */
+  const builderRoot = document.getElementById('box-builder');
+  if (builderRoot) {
+    const builderProducts = [
+      { id: 'm-choco', category: 'madeleine', name: '초코 마들렌', price: 2800, image: 'assets/menu_madeleine.png', tone: '#765044' },
+      { id: 'm-matcha', category: 'madeleine', name: '말차 마들렌', price: 2900, image: 'assets/menu_madeleine.png', tone: '#82916a' },
+      { id: 'm-earlgrey', category: 'madeleine', name: '얼그레이 마들렌', price: 2800, image: 'assets/menu_madeleine.png', tone: '#c19b72' },
+      { id: 'm-lemon', category: 'madeleine', name: '레몬 마들렌', price: 2800, image: 'assets/menu_madeleine.png', tone: '#e4b957' },
+      { id: 'm-raspberry', category: 'madeleine', name: '라즈베리 마들렌', price: 2900, image: 'assets/menu_madeleine.png', tone: '#d88989' },
+      { id: 'f-fig', category: 'financier', name: '무화과 휘낭시에', price: 3200, image: 'assets/menu_financier.png', tone: '#a16c4c' },
+      { id: 'f-almond', category: 'financier', name: '아몬드 휘낭시에', price: 3000, image: 'assets/menu_financier.png', tone: '#c6945f' },
+      { id: 'f-cheese', category: 'financier', name: '황치즈 휘낭시에', price: 3100, image: 'assets/menu_financier.png', tone: '#d6a33d' },
+      { id: 'f-caramel', category: 'financier', name: '카라멜솔티 휘낭시에', price: 3100, image: 'assets/menu_financier.png', tone: '#9d5f35' },
+      { id: 'f-coconut', category: 'financier', name: '초코코코넛 휘낭시에', price: 3200, image: 'assets/menu_financier.png', tone: '#69483f' },
+      { id: 'f-matcha', category: 'financier', name: '말차화이트초코 휘낭시에', price: 3200, image: 'assets/menu_financier.png', tone: '#718762' },
+      { id: 'c-choco', category: 'cookie', name: '초코 사블레', price: 2200, image: 'assets/menu_sable.png', tone: '#6e4b3c' },
+      { id: 'c-matcha', category: 'cookie', name: '말차 사블레', price: 2300, image: 'assets/menu_sable.png', tone: '#75875d' },
+      { id: 'c-cheese', category: 'cookie', name: '황치즈 사블레', price: 2300, image: 'assets/menu_sable.png', tone: '#d7a84e' },
+      { id: 'c-raspberry', category: 'cookie', name: '라즈베리코코넛 사블레', price: 2400, image: 'assets/menu_sable.png', tone: '#d28d91' },
+      { id: 'c-vanilla', category: 'cookie', name: '바닐라 사블레', price: 2200, image: 'assets/menu_sable.png', tone: '#d6bf98' },
+      { id: 'c-coffee', category: 'cookie', name: '커피 사블레', price: 2300, image: 'assets/menu_sable.png', tone: '#80614c' }
+    ];
+    const builderState = { items: [], sets: 10, filter: 'all' };
+    const productGrid = document.getElementById('builder-products');
+    const slots = document.getElementById('gift-box-slots');
+    const setQuantity = document.getElementById('builder-set-quantity');
+    const won = value => `₩${value.toLocaleString('ko-KR')}`;
+
+    function renderBuilderProducts() {
+      const visible = builderProducts.filter(item => builderState.filter === 'all' || item.category === builderState.filter);
+      productGrid.innerHTML = visible.map(item => `
+        <button type="button" class="builder-product-card" data-product="${item.id}" style="--product-tone:${item.tone}">
+          <span class="product-thumb"><img src="${item.image}" alt=""></span>
+          <span class="product-copy"><b>${item.name}</b><small>${won(item.price)}</small></span>
+          <span class="product-add">＋</span>
+        </button>`).join('');
+      productGrid.querySelectorAll('[data-product]').forEach(button => {
+        button.addEventListener('click', () => {
+          if (builderState.items.length >= 12) {
+            builderRoot.classList.remove('box-full');
+            void builderRoot.offsetWidth;
+            builderRoot.classList.add('box-full');
+            return;
+          }
+          builderState.items.push(builderProducts.find(item => item.id === button.dataset.product));
+          updateBuilder();
+        });
+      });
+    }
+
+    function updateBuilder() {
+      slots.innerHTML = builderState.items.map((item, index) => `
+        <button type="button" class="filled-slot" data-slot="${index}" title="${item.name} 빼기" style="--product-tone:${item.tone}">
+          <img src="${item.image}" alt="${item.name}"><span>${item.name.replace(' 휘낭시에','').replace(' 마들렌','').replace(' 사블레','')}</span>
+        </button>`).join('');
+      slots.querySelectorAll('[data-slot]').forEach(slot => slot.addEventListener('click', () => {
+        builderState.items.splice(Number(slot.dataset.slot), 1);
+        updateBuilder();
+      }));
+      const itemTotal = builderState.items.reduce((sum, item) => sum + item.price, 0);
+      const setPrice = itemTotal + 1500;
+      const grandTotal = setPrice * builderState.sets;
+      document.getElementById('box-count').textContent = builderState.items.length;
+      document.getElementById('builder-item-count').textContent = `${builderState.items.length}개`;
+      document.getElementById('builder-set-price').textContent = won(setPrice);
+      document.getElementById('builder-grand-total').textContent = won(grandTotal);
+      if (selectedSummaryInput) selectedSummaryInput.value = builderState.items.length
+        ? `${builderState.items.map(item => item.name).join(', ')} / ${builderState.sets}세트 / 예상 ${won(grandTotal)}`
+        : `제품 미선택 / ${builderState.sets}세트`;
+      if (inquirySetsSync) inquirySetsSync.value = builderState.sets;
+    }
+
+    document.querySelectorAll('.lineup-tab').forEach(tab => tab.addEventListener('click', () => {
+      builderState.filter = tab.dataset.filter;
+      document.querySelectorAll('.lineup-tab').forEach(item => item.classList.toggle('active', item === tab));
+      renderBuilderProducts();
+    }));
+    document.getElementById('box-reset').addEventListener('click', () => { builderState.items = []; updateBuilder(); });
+    document.getElementById('sets-minus').addEventListener('click', () => { builderState.sets = Math.max(10, builderState.sets - 1); setQuantity.value = builderState.sets; updateBuilder(); });
+    document.getElementById('sets-plus').addEventListener('click', () => { builderState.sets = Math.min(1000, builderState.sets + 1); setQuantity.value = builderState.sets; updateBuilder(); });
+    setQuantity.addEventListener('input', () => { builderState.sets = Math.min(1000, Math.max(10, Number(setQuantity.value) || 10)); updateBuilder(); });
+    setQuantity.addEventListener('blur', () => { setQuantity.value = builderState.sets; });
+    renderBuilderProducts();
+    updateBuilder();
+  }
 
   /* ====================================================
    * 5. Contact Form Submission & Modal Dialog

@@ -434,7 +434,50 @@
         <p class="section-desc">원하는 디저트 종류와 수량, 포장을 선택하여 미리 예상 금액을 조회하고 간편하게 상담을 신청할 수 있습니다.</p>
       </div>
 
-      <div class="simulator-wrapper reveal">
+      <div class="box-builder reveal" id="box-builder">
+        <div class="builder-lineup">
+          <div class="builder-heading">
+            <span class="builder-step">01</span>
+            <div><h3>나만의 구움과자 선택</h3><p>원하는 제품을 클릭하면 선물상자에 하나씩 담겨요.</p></div>
+          </div>
+          <div class="lineup-tabs" role="tablist" aria-label="제품 종류">
+            <button type="button" class="lineup-tab active" data-filter="all">전체</button>
+            <button type="button" class="lineup-tab" data-filter="madeleine">마들렌</button>
+            <button type="button" class="lineup-tab" data-filter="financier">휘낭시에</button>
+            <button type="button" class="lineup-tab" data-filter="cookie">사블레</button>
+          </div>
+          <div class="builder-products" id="builder-products" aria-label="제품 라인업"></div>
+          <p class="builder-tip">상자 한 개에는 최대 12개까지 담을 수 있습니다.</p>
+        </div>
+
+        <div class="builder-preview">
+          <div class="builder-heading">
+            <span class="builder-step">02</span>
+            <div><h3>선물상자 미리보기</h3><p>담긴 제품을 누르면 다시 뺄 수 있어요.</p></div>
+          </div>
+          <div class="gift-box-stage">
+            <img src="assets/gift-box-empty-v1.png" alt="12칸으로 나뉜 스위트리본 빈 선물상자">
+            <div class="gift-box-slots" id="gift-box-slots" aria-live="polite"></div>
+          </div>
+          <div class="box-status"><strong id="box-count">0</strong><span>/ 12개 담김</span><button type="button" id="box-reset">모두 비우기</button></div>
+
+          <div class="builder-summary">
+            <div class="summary-title"><span>MY SWEET BOX</span><strong>예상 견적</strong></div>
+            <div class="summary-row"><span>선택한 제품</span><strong id="builder-item-count">0개</strong></div>
+            <div class="summary-row"><span>상자·포장</span><strong>₩1,500</strong></div>
+            <div class="summary-row emphasis"><span>1세트 예상 금액</span><strong id="builder-set-price">₩1,500</strong></div>
+            <label class="builder-order-quantity" for="builder-set-quantity">
+              <span>총 필요 수량</span>
+              <span class="quantity-field"><button type="button" id="sets-minus" aria-label="수량 줄이기">−</button><input id="builder-set-quantity" type="number" value="10" min="10" max="1000"><button type="button" id="sets-plus" aria-label="수량 늘리기">+</button><b>세트</b></span>
+            </label>
+            <div class="builder-grand-total"><span>총 예상 결제 금액<small>제품 및 기본 포장 포함</small></span><strong id="builder-grand-total">₩15,000</strong></div>
+            <a class="btn builder-inquiry" href="#contact">이 구성으로 문의하기</a>
+            <p class="builder-disclaimer">실제 금액은 포장 옵션과 주문 일정에 따라 달라질 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="simulator-wrapper reveal legacy-simulator">
         <!-- Selection Area -->
         <div class="sim-controls">
           
