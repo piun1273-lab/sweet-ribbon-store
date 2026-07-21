@@ -2545,3 +2545,67 @@ section {
     gap: 1.5rem;
   }
 }
+
+/* Dynamic box sizes and natural pastry arrangement */
+.gift-box-stage {
+  margin-inline: auto;
+  transition: width .35s ease, max-width .35s ease;
+}
+.gift-box-stage.capacity-3 { width: 70%; }
+.gift-box-stage.capacity-4 { width: 80%; }
+.gift-box-stage.capacity-5 { width: 90%; }
+.gift-box-stage.capacity-6 { width: 96%; }
+.gift-box-stage.capacity-8,
+.gift-box-stage.capacity-12 { width: 100%; }
+.gift-box-slots {
+  left: 16%;
+  top: 17%;
+  width: 69%;
+  height: 52%;
+  gap: 2.5%;
+  align-items: stretch;
+  transform: perspective(900px) rotateX(2deg);
+}
+.gift-box-slots.capacity-3 { grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr; }
+.gift-box-slots.capacity-4 { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr; }
+.gift-box-slots.capacity-5 { grid-template-columns: repeat(5, 1fr); grid-template-rows: 1fr; }
+.gift-box-slots.capacity-6 { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); }
+.gift-box-slots.capacity-8 { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); }
+.gift-box-slots.capacity-12 { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); }
+.filled-slot {
+  background: transparent;
+  overflow: visible;
+  filter: drop-shadow(0 6px 5px rgba(83, 55, 38, .18));
+}
+.filled-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transform: scale(1.08);
+  transition: transform .2s ease;
+}
+.filled-slot:hover img { transform: scale(1.13); }
+.filled-slot span { display: none !important; }
+.box-status { flex-wrap: wrap; }
+.box-status em {
+  margin-left: 9px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #edf4f1;
+  color: #66837d;
+  font-size: 10px;
+  font-style: normal;
+}
+.box-status span b { color: inherit; font-weight: 600; }
+
+@media (max-width: 560px) {
+  .gift-box-stage.capacity-3 { width: 78%; }
+  .gift-box-stage.capacity-4 { width: 88%; }
+  .gift-box-stage.capacity-5,
+  .gift-box-stage.capacity-6,
+  .gift-box-stage.capacity-8,
+  .gift-box-stage.capacity-12 { width: 100%; }
+  .gift-box-slots { left: 16%; top: 17%; width: 69%; height: 52%; }
+  .box-status em { order: 3; margin-left: 0; }
+}

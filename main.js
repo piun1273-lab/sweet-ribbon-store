@@ -635,8 +635,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const builderState = { items: [], sets: 10, filter: 'all' };
     const productGrid = document.getElementById('builder-products');
     const slots = document.getElementById('gift-box-slots');
+    const boxStage = builderRoot.querySelector('.gift-box-stage');
     const setQuantity = document.getElementById('builder-set-quantity');
     const won = value => `₩${value.toLocaleString('ko-KR')}`;
+
+    function getBoxSpec(items) {
+      const count = items.length;
+      const categories = new Set(items.map(item => item.category));
+      const onlyMadeleine = categories.size === 1 && categories.has('madeleine');
+      const onlyFinancier = categories.size === 1 && categories.has('financier');
+      const madeleineFinancierMix = categories.size === 2 && categories.has('madeleine') && categories.has('financier');
+      let capacity = 3;
+      let max = 12;
+      let label = '빈 상자 · 3구';
+
+      if (onlyMadeleine) {
+        max = 5;
+        capacity = count <= 3 ? 3 : 5;
+        label = `마들렌 ${capacity}구`;
+      } else if (onlyFinancier) {
+        max = 6;
+        capacity = count <= 3 ? 3 : count <= 4 ? 4 : 6;
+        label = `휘낭시에 ${capacity}구`;
+      } else if (madeleineFinancierMix) {
+        max = 6;
+        capacity = count <= 3 ? 3 : count <= 4 ? 4 : count <= 5 ? 5 : 6;
+        label = `마들렌 · 휘낭시에 직사각 ${capacity}구`;
+      } else if (categories.has('cookie')) {
+        max = 12;
+        capacity = count <= 3 ? 3 : count <= 4 ? 4 : count <= 6 ? 6 : count <= 8 ? 8 : 12;
+        label = `믹스 선물상자 ${capacity}구`;
+      }
+      return { capacity, max, label };
+    }
 
     function renderBuilderProducts() {
       const visible = builderProducts.filter(item => builderState.filter === 'all' || item.category === builderState.filter);
@@ -648,23 +679,29 @@ document.addEventListener('DOMContentLoaded', () => {
         </button>`).join('');
       productGrid.querySelectorAll('[data-product]').forEach(button => {
         button.addEventListener('click', () => {
-          if (builderState.items.length >= 12) {
+          const nextItem = builderProducts.find(item => item.id === button.dataset.product);
+          const nextItems = [...builderState.items, nextItem];
+          const nextSpec = getBoxSpec(nextItems);
+          if (nextItems.length > nextSpec.max) {
             builderRoot.classList.remove('box-full');
             void builderRoot.offsetWidth;
             builderRoot.classList.add('box-full');
             return;
           }
-          builderState.items.push(builderProducts.find(item => item.id === button.dataset.product));
+          builderState.items.push(nextItem);
           updateBuilder();
         });
       });
     }
 
     function updateBuilder() {
+      const boxSpec = getBoxSpec(builderState.items);
       slots.innerHTML = builderState.items.map((item, index) => `
-        <button type="button" class="filled-slot" data-slot="${index}" title="${item.name} 빼기" style="--product-tone:${item.tone}">
-          <img src="${item.image}" alt="${item.name}"><span>${item.name.replace(' 휘낭시에','').replace(' 마들렌','').replace(' 사블레','')}</span>
+        <button type="button" class="filled-slot" data-slot="${index}" aria-label="상자에서 제품 빼기" style="--product-tone:${item.tone}">
+          <img src="${item.image}" alt="">
         </button>`).join('');
+      slots.className = `gift-box-slots capacity-${boxSpec.capacity}`;
+      boxStage.className = `gift-box-stage capacity-${boxSpec.capacity}`;
       slots.querySelectorAll('[data-slot]').forEach(slot => slot.addEventListener('click', () => {
         builderState.items.splice(Number(slot.dataset.slot), 1);
         updateBuilder();
@@ -673,6 +710,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const setPrice = itemTotal + 1500;
       const grandTotal = setPrice * builderState.sets;
       document.getElementById('box-count').textContent = builderState.items.length;
+      document.getElementById('box-capacity').textContent = boxSpec.capacity;
+      document.getElementById('box-format').textContent = boxSpec.label;
       document.getElementById('builder-item-count').textContent = `${builderState.items.length}개`;
       document.getElementById('builder-set-price').textContent = won(setPrice);
       document.getElementById('builder-grand-total').textContent = won(grandTotal);
