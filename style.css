@@ -2609,3 +2609,37 @@ section {
   .gift-box-slots { left: 16%; top: 17%; width: 69%; height: 52%; }
   .box-status em { order: 3; margin-left: 0; }
 }
+
+/* Transparent pastries layered naturally inside the box */
+.product-thumb img,
+.filled-slot img { mix-blend-mode: normal; }
+.product-thumb img { object-fit: contain; }
+.filled-slot {
+  z-index: 1;
+  filter: drop-shadow(0 7px 4px rgba(73, 45, 29, .22));
+  animation: pastryPlace .3s ease both;
+  transform-origin: 50% 86%;
+}
+.filled-slot:nth-child(4n + 1) { transform: rotate(-4deg) translate(4%, 2%); z-index: 2; }
+.filled-slot:nth-child(4n + 2) { transform: rotate(3deg) translate(-3%, -2%); z-index: 4; }
+.filled-slot:nth-child(4n + 3) { transform: rotate(-2deg) translate(2%, 1%); z-index: 3; }
+.filled-slot:nth-child(4n) { transform: rotate(4deg) translate(-4%, 3%); z-index: 2; }
+.filled-slot img {
+  transform: scale(1.28);
+  object-fit: contain;
+  pointer-events: none;
+}
+.filled-slot:hover img { transform: scale(1.34); }
+.gift-box-slots.capacity-3,
+.gift-box-slots.capacity-4,
+.gift-box-slots.capacity-5 { gap: 0; }
+.gift-box-slots.capacity-6,
+.gift-box-slots.capacity-8,
+.gift-box-slots.capacity-12 { gap: 1% 0; }
+.gift-box-slots.capacity-6 .filled-slot img,
+.gift-box-slots.capacity-8 .filled-slot img,
+.gift-box-slots.capacity-12 .filled-slot img { transform: scale(1.2); }
+@keyframes pastryPlace {
+  from { opacity: 0; margin-top: -12px; }
+  to { opacity: 1; margin-top: 0; }
+}
