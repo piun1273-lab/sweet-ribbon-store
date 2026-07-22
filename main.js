@@ -768,7 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Submit
-  inquiryForm.addEventListener('submit', (e) => {
+  inquiryForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const submitBtn = inquiryForm.querySelector('.btn-submit-form');
@@ -776,7 +776,26 @@ document.addEventListener('DOMContentLoaded', () => {
     submitBtn.textContent = '신청을 접수하는 중...';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
+    try {
+      const inquiryResponse = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: document.getElementById('user-name').value,
+          phone: document.getElementById('user-phone').value,
+          eventDate: document.getElementById('event-date').value,
+          quantity: document.getElementById('sim-sets-sync').value,
+          estimate: document.getElementById('selected-summary').value,
+          message: document.getElementById('user-message').value,
+          website: document.getElementById('website').value
+        })
+      });
+
+      const inquiryResult = await inquiryResponse.json().catch(() => ({}));
+      if (!inquiryResponse.ok || !inquiryResult.ok) {
+        throw new Error(inquiryResult.message || '상담 신청을 전송하지 못했습니다.');
+      }
+
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
 
@@ -785,7 +804,11 @@ document.addEventListener('DOMContentLoaded', () => {
       
       inquiryForm.reset();
       calculateEstimate();
-    }, 1500);
+    } catch (error) {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      alert(error.message || '전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+    }
   });
 
   modalCloseBtn.addEventListener('click', () => {
