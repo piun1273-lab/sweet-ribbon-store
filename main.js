@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getBoxSpec(items) {
       const count = items.length;
       const capacity = count === 0 ? 0 : Math.ceil(count / 5) * 5;
-      return { capacity, max: 20, label: `선물상자 (${count}개 담김)` };
+      return { capacity, max: 12, label: `선물상자 (${count}개 담김)` };
     }
 
     function renderBuilderProducts() {
