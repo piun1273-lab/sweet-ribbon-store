@@ -1,4 +1,8 @@
-/* 선물상자 내부 굿즈 배치: 왼쪽부터 빈틈없이 촘촘하게 꽉 차게 정렬 */
+/* ====================================================
+   Sweet Ribbon - 최종 통합 스타일 (헤더 정상화 + 과자 상자 정렬)
+   ==================================================== */
+
+/* 1. 선물상자 내부 굿즈 배치: 왼쪽부터 빈틈없이 촘촘하게 꽉 차게 정렬 및 2단 줄바꿈 */
 .gift-box-slots {
     display: flex !important;
     flex-wrap: wrap !important;
@@ -31,22 +35,4 @@
 .gift-box-slots .filled-slot.gift-item:hover {
     transform: scale(1.45) translateY(-3px) !important;
     z-index: 50;
-}
-/* 상단 헤더 및 네비게이션 레이아웃 고정 */
-#main-header, header {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    width: 100% !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 15px 20px !important;
-    box-sizing: border-box !important;
-}
-
-/* 상단 메뉴 텍스트 겹침 방지 */
-#main-header nav, .header-nav, .nav-links {
-    display: flex !important;
-    gap: 20px !important;
-    align-items: center !important;
 }
