@@ -834,3 +834,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize view
   applyPreset('wedding');
 });
+// 상자 화면을 업데이트하는 함수 (메인.js 내부의 상자 렌더링 부분)
+function updateGiftBox() {
+    const boxContainer = document.getElementById('dynamicGiftBox'); // 상자 내부 DOM 아이디
+    if (!boxContainer) return;
+
+    boxContainer.innerHTML = ''; // 기존 내용 초기화
+
+    if (selectedItems.length === 0) {
+        boxContainer.innerHTML = '<span class="empty-guide">상품을 담아주세요</span>';
+        return;
+    }
+
+    // 선택된 상품들을 순서대로 상자 안에 동적으로 배치 (겹침 효과 적용)
+    selectedItems.forEach((item, index) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = item.img || item.image; // 이미지 경로
+        imgElement.className = 'gift-item';
+        imgElement.title = '클릭시 제외';
+        
+        // 클릭하면 상자에서 빠지는 기능
+        imgElement.onclick = () => {
+            selectedItems.splice(index, 1);
+            updateGiftBox(); // 다시 렌더링
+        };
+
+        boxContainer.appendChild(imgElement);
+    });
+}
