@@ -3578,3 +3578,10 @@ body {
   position: relative;
   z-index: 1;
 }
+
+
+/* Remove parchment cups from the gift box preview */
+.gift-box-slots .filled-slot.product-madeleine::before,
+.gift-box-slots .filled-slot.product-financier::before {
+  display: none !important;
+}
