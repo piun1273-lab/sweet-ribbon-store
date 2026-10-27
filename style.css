@@ -3507,3 +3507,50 @@ body {
 .gift-box-slots .product-madeleine:nth-child(5n) {
   transform: translateY(0);
 }
+/* Pack financiers in six columns, with the partial second row centered. */
+.gift-box-slots:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) {
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+}
+.gift-box-slots:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier {
+  width: 126% !important;
+  margin-left: -13% !important;
+  margin-right: -13% !important;
+  position: relative;
+  z-index: 1;
+}
+.gift-box-slots:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier img {
+  transform: scale(1.38) !important;
+}
+.gift-box-slots.items-6:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n) {
+  grid-row: 1 !important;
+  grid-column: auto !important;
+}
+.gift-box-slots.items-7:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 1):nth-child(-n + 6) {
+  grid-row: 1 !important;
+  grid-column: auto !important;
+}
+.gift-box-slots.items-7:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(7) { grid-row: 2 !important; grid-column: 3 !important; }
+.gift-box-slots.items-8:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 1):nth-child(-n + 6) { grid-row: 1 !important; grid-column: auto !important; }
+.gift-box-slots.items-8:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(7) { grid-row: 2 !important; grid-column: 3 !important; }
+.gift-box-slots.items-8:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(8) { grid-row: 2 !important; grid-column: 4 !important; }
+.gift-box-slots.items-9:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 1):nth-child(-n + 6) { grid-row: 1 !important; grid-column: auto !important; }
+.gift-box-slots.items-9:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 7) { grid-row: 2 !important; grid-column: auto !important; }
+.gift-box-slots.items-10:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 1):nth-child(-n + 6) { grid-row: 1 !important; grid-column: auto !important; }
+.gift-box-slots.items-10:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 7) { grid-row: 2 !important; grid-column: auto !important; }
+.gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 1):nth-child(-n + 6) { grid-row: 1 !important; grid-column: auto !important; }
+.gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 7) { grid-row: 2 !important; grid-column: auto !important; }
+.gift-box-slots.items-12:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 1):nth-child(-n + 6) { grid-row: 1 !important; grid-column: auto !important; }
+.gift-box-slots.items-12:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(n + 7) { grid-row: 2 !important; grid-column: auto !important; }
+/* Center incomplete second rows. */
+.gift-box-slots.items-9:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(7) { grid-column: 2 !important; }
+.gift-box-slots.items-9:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(8) { grid-column: 3 !important; }
+.gift-box-slots.items-9:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(9) { grid-column: 4 !important; }
+.gift-box-slots.items-10:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(7) { grid-column: 2 !important; }
+.gift-box-slots.items-10:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(8) { grid-column: 3 !important; }
+.gift-box-slots.items-10:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(9) { grid-column: 4 !important; }
+.gift-box-slots.items-10:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(10) { grid-column: 5 !important; }
+.gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(7) { grid-column: 1 !important; }
+.gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(8) { grid-column: 2 !important; }
+.gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(9) { grid-column: 3 !important; }
+.gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(10) { grid-column: 4 !important; }
+.gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(11) { grid-column: 5 !important; }
