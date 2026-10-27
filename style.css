@@ -3561,3 +3561,20 @@ body {
 .gift-box-slots .filled-slot.product-financier::before {
   display: block !important;
 }
+
+
+/* Keep each white pleated cup visible behind its pastry */
+.gift-box-slots .filled-slot.product-madeleine,
+.gift-box-slots .filled-slot.product-financier {
+  background: transparent !important;
+}
+.gift-box-slots .filled-slot.product-madeleine::before,
+.gift-box-slots .filled-slot.product-financier::before {
+  display: block !important;
+  z-index: 0 !important;
+}
+.gift-box-slots .filled-slot.product-madeleine img,
+.gift-box-slots .filled-slot.product-financier img {
+  position: relative;
+  z-index: 1;
+}
