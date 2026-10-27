@@ -3489,3 +3489,21 @@ body {
   object-fit: contain;
   transform: scale(1.12) !important;
 }
+/* Pack madeleines tightly like a real gift box. */
+.gift-box-slots .product-madeleine {
+  width: 128% !important;
+  margin-left: -14% !important;
+  margin-right: -14% !important;
+  position: relative;
+  z-index: 1;
+}
+.gift-box-slots .product-madeleine img {
+  transform: scale(1.48) !important;
+}
+.gift-box-slots .product-madeleine:nth-child(5n + 1),
+.gift-box-slots .product-madeleine:nth-child(5n + 2),
+.gift-box-slots .product-madeleine:nth-child(5n + 3),
+.gift-box-slots .product-madeleine:nth-child(5n + 4),
+.gift-box-slots .product-madeleine:nth-child(5n) {
+  transform: translateY(0);
+}
