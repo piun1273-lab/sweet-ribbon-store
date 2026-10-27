@@ -32,3 +32,21 @@
     transform: scale(1.45) translateY(-3px) !important;
     z-index: 50;
 }
+/* 상단 헤더 및 네비게이션 레이아웃 고정 */
+#main-header, header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 15px 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* 상단 메뉴 텍스트 겹침 방지 */
+#main-header nav, .header-nav, .nav-links {
+    display: flex !important;
+    gap: 20px !important;
+    align-items: center !important;
+}
