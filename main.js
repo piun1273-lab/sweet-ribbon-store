@@ -130,8 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getBoxSpec(items) {
       const count = items.length;
-      let capacity = count <= 5 ? 5 : 10;
-      return { capacity, max: 20, label: `선물상자 (${count}개 담김)` };
+      const capacity = count === 0 ? 0 : Math.ceil(count / 5) * 5;
+      return { capacity, max: 12, label: `선물상자 (${count}개 담김)` };
     }
 
     function renderBuilderProducts() {
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
           const nextItem = builderProducts.find(item => item.id === button.dataset.product);
           if (nextItem) {
-            builderState.items.push(nextItem);
+            if (builderState.items.length >= getBoxSpec(builderState.items).max) { builderRoot.classList.add('box-full'); return; } builderRoot.classList.remove('box-full'); builderState.items.push(nextItem);
             updateBuilder();
           }
         });
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (slots) {
         // 한 줄에 최대 5개, 6개부터는 아랫줄(2단)로 떨어지도록 그리드 레이아웃 적용
         slots.innerHTML = builderState.items.map((item, index) => `
-          <button type="button" class="filled-slot gift-item product-${item.category}" data-slot="${index}" aria-label="상자에서 제품 빼기" style="--product-tone:${item.tone};">
+          <button type="button" class="filled-slot gift-item product-${item.category}" data-slot="${index}" aria-label="상자에서 제품 빼기" style="--product-tone:${item.tone};grid-row:${Math.floor(index / 5) + 1};grid-column:${(index % 5) + 1 + (index >= builderState.items.length - (builderState.items.length % 5 || 5) ? Math.floor((5 - (builderState.items.length % 5 || 5)) / 2) : 0)};">
             <img src="${item.image}" alt="${item.name}">
           </button>`).join('');
 
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (boxStage) {
         boxStage.className = `gift-box-stage item-count-${builderState.items.length}`;
-        const boxWidth = builderState.items.length === 0 ? 45 : Math.min(100, Math.max(45, 35 + Math.min(builderState.items.length, 5) * 11));
+        const boxWidth = builderState.items.length === 0 ? 45 : Math.min(100, 35 + Math.min(builderState.items.length, 5) * 11 + Math.max(0, builderState.items.length - 5) * 3);
         boxStage.style.width = `${boxWidth}%`;
       }
 
