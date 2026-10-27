@@ -3461,3 +3461,35 @@ body {
     transform: scale(1.45) translateY(-4px) !important;
     z-index: 30;
 }
+/* 선물상자 내부 굿즈 배치: 한 줄에 최대 5개, 6개부터는 아랫줄로 이동 */
+.gift-box-slots {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 2px !important;
+    justify-items: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+.gift-box-slots .filled-slot.gift-item {
+    width: 60px !important;
+    height: 60px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.gift-box-slots .filled-slot.gift-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    transform: scale(1.35); /* 여백 제거 및 본체 확대 */
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
+}
+
+.gift-box-slots .filled-slot.gift-item:hover {
+    transform: scale(1.45) translateY(-3px) !important;
+    z-index: 50;
+}
