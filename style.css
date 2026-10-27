@@ -36,3 +36,46 @@
     transform: scale(1.45) translateY(-3px) !important;
     z-index: 50;
 }
+/* ====================================================
+   Sweet Ribbon - 스타일 통합본 (상단 헤더 정상 유지 + 과자 상자 정렬)
+   ==================================================== */
+
+/* 1. 상단 헤더 및 네비게이션 기본 안정화 */
+#main-header, header {
+    box-sizing: border-box;
+}
+
+/* 2. 선물상자 내부 굿즈 배치: 왼쪽부터 빈틈없이 촘촘하게 꽉 차게 정렬 */
+.gift-box-slots {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 4px !important;
+    max-width: 100%;
+}
+
+.gift-box-slots .filled-slot.gift-item {
+    width: 58px !important;
+    height: 58px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 2px 2px 0 !important;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    flex: 0 0 auto;
+}
+
+.gift-box-slots .filled-slot.gift-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    transform: scale(1.35);
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
+}
+
+.gift-box-slots .filled-slot.gift-item:hover {
+    transform: scale(1.45) translateY(-3px) !important;
+    z-index: 50;
+}
