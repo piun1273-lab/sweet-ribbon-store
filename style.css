@@ -3554,3 +3554,10 @@ body {
 .gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(9) { grid-column: 3 !important; }
 .gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(10) { grid-column: 4 !important; }
 .gift-box-slots.items-11:has(> .product-financier:nth-child(6)):not(:has(> .product-madeleine)):not(:has(> .product-cookie)) .product-financier:nth-child(11) { grid-column: 5 !important; }
+
+
+/* White pleated parchment cups for madeleines and financiers in the gift preview */
+.gift-box-slots .filled-slot.product-madeleine::before,
+.gift-box-slots .filled-slot.product-financier::before {
+  display: block !important;
+}
