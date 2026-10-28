@@ -161,16 +161,16 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (slots) {
         // 한 줄에 최대 5개, 6개부터는 아랫줄(2단)로 떨어지도록 그리드 레이아웃 적용
-        slots.innerHTML = builderState.items.map((item, index) => `
-          <button type="button" class="filled-slot gift-item product-${item.category}" data-slot="${index}" aria-label="상자에서 제품 빼기" style="--product-tone:${item.tone};grid-row:${Math.floor(index / 5) + 1};grid-column:${(index % 5) + 1 + (index >= builderState.items.length - (builderState.items.length % 5 || 5) ? Math.floor((5 - (builderState.items.length % 5 || 5)) / 2) : 0)};">
+        const categories = new Set(builderState.items.map(item => item.category)); const mixedLayout = categories.size > 1; const rowCount = mixedLayout ? Math.ceil(builderState.items.length / 5) : 0; const rowSizes = Array.from({ length: rowCount }, (_, row) => Math.floor(builderState.items.length / rowCount) + (row < builderState.items.length % rowCount ? 1 : 0)); const mixedPositions = []; const maxRowSize = rowSizes.length ? Math.max(...rowSizes) : 0; rowSizes.forEach((size, row) => { const span = 60 / maxRowSize; const offset = (maxRowSize - size) * span / 2; for (let column = 0; column < size; column++) mixedPositions.push({ row: row + 1, column: offset + column * span + 1, span }); }); if (mixedLayout) { slots.style.setProperty('grid-template-columns', 'repeat(60,minmax(0,1fr))', 'important'); slots.style.setProperty('grid-template-rows', 'repeat(' + rowCount + ',minmax(0,1fr))', 'important'); slots.style.setProperty('gap', '0', 'important'); } else { slots.style.removeProperty('grid-template-columns'); slots.style.removeProperty('grid-template-rows'); slots.style.removeProperty('gap'); } slots.innerHTML = builderState.items.map((item, index) => `
+          <button type="button" class="filled-slot gift-item product-${item.category}" data-slot="${index}" aria-label="상자에서 제품 빼기" style="--product-tone:${item.tone};grid-row:${mixedLayout ? mixedPositions[index].row : Math.floor(index / 5) + 1};grid-column:${mixedLayout ? mixedPositions[index].column + ' / span ' + mixedPositions[index].span : (index % 5) + 1 + (index >= builderState.items.length - (builderState.items.length % 5 || 5) ? Math.floor((5 - (builderState.items.length % 5 || 5)) / 2) : 0)};">
             <img src="${item.image}" alt="${item.name}">
           </button>`).join('');
 
         // 5개 초과 시 자동으로 2단 줄바꿈이 되도록 클래스 제어
         const isTwoRows = builderState.items.length > 5;
-        slots.className = `gift-box-slots items-${builderState.items.length} ${isTwoRows ? 'two-rows' : 'one-row'}`;
+        slots.className = `gift-box-slots items-${builderState.items.length} ${isTwoRows ? 'two-rows' : 'one-row'} ${mixedLayout ? 'is-mixed' : ''}`;
         
-        slots.querySelectorAll('[data-slot]').forEach(slot => {
+        if (mixedLayout) slots.querySelectorAll('[data-slot]').forEach(slot => { const item = builderState.items[Number(slot.dataset.slot)]; const scale = item.category === 'madeleine' ? 1.2 : item.category === 'financier' ? 1.12 : 1.1; slot.style.setProperty('width', '116%', 'important'); slot.style.setProperty('margin-left', '-8%', 'important'); slot.style.setProperty('margin-right', '-8%', 'important'); slot.querySelector('img').style.setProperty('transform', 'scale(' + scale + ')', 'important'); }); slots.querySelectorAll('[data-slot]').forEach(slot => {
           slot.addEventListener('click', () => {
             builderState.items.splice(Number(slot.dataset.slot), 1);
             updateBuilder();
